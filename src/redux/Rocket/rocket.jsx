@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk, createEntityAdapter} from '@reduxjs/toolkit'
+import {createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit'
 const rocketsUrl = "https://api.spacexdata.com/v4/rockets"
 
 export const usersAdapter = createEntityAdapter();
@@ -22,7 +22,15 @@ export const LIST_ROCKETS = createAsyncThunk('LIST_ROCKETS', async () => {
     name: 'rocketslist',
     initialState,
     reducers: {
-       
+       JOIN_ROCKET: (payload) => {
+        return state.map((rocket) => {
+            if (rocket.id === payload) {
+              return { ...rocket, reserved: !rocket.reserved };
+            }
+            return rocket;
+          });
+       }
+      
     },
     extraReducers: (builder) => {
       builder.addCase(LIST_ROCKETS.pending, (state) => {
@@ -30,14 +38,17 @@ export const LIST_ROCKETS = createAsyncThunk('LIST_ROCKETS', async () => {
       });
       builder.addCase(LIST_ROCKETS.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload
-        // return [...state, ...action.payload];
+        state.list = action.payload.map((rocket) => {
+            return {...rocket, reserved:  false}
+        })
+        return state;
       });
       builder.addCase(LIST_ROCKETS.rejected, (state, action) => {
         state.msg = action.payload;
       });
     },
   });
+
 
   export default rocketSlice.reducer;
 

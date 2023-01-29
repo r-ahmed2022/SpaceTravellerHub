@@ -1,40 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { LIST_ROCKETS } from '../redux/Rocket/rocket'
-
-
+import React, {useState} from 'react'
+import { JOIN_ROCKET } from '../redux/Rocket/rocket'
+import {useDispatch} from 'react-redux'
 
 export default function Rocket(props) {
-    const { list } = useSelector((state) => state?.rocketslist);
-    const {onclick} = props
+    const dispatch = useDispatch();
     const [reserved, setReserved] = useState(true)
-    const dispatch = useDispatch()
-    useEffect(() => {
-     dispatch(LIST_ROCKETS())
-      
-    }, [dispatch])
-
-    const setReserve = (id) => {
+    const {rocket} = props
+    const setReserve = (rocket) => {
         setReserved(prev => !prev)
-      }
-
-    const rocketList = list.map((rocket) => {
-          return <div className="rocket">
+        dispatch(JOIN_ROCKET(rocket.id))
+     }
+  return (
+<div className="rocket">
                      <div className="rocket-img-div">
                          <img className="rocket-img"src={rocket.flickr_images[0]} />
                      </div>
                      <div className="rocket-info">
                          <h4>{rocket.name}</h4>
                          <p>{rocket.description}</p>
-                        <button className='active' onClick={() => setReserve(rocket.id)}>{reserved? "Reserve" : "Cancel"}</button> 
+                        <button className='active' onClick={() => setReserve(rocket)}>{reserved? "Reserve" : "Cancel"}</button> 
                      </div>
                      
                   </div>
-    })
-  return (
-    <div className="rocketlist">
-      {rocketList}
-    
-    </div>
   )
 }

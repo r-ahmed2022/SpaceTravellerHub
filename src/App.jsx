@@ -4,7 +4,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Mission from './components/Mission'
 import Profile from './components/Profile'
-import Rocket from './components/Rocket'
+import RocketList from './components/RocketList'
 import { LIST_ROCKETS } from './redux/Rocket/rocket'
 import './App.css'
 
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
             <Navbar />
             <Routes>
-            <Route exact path="/" element={<Rocket />} />
+            <Route exact path="/" element={<RocketList />} />
             </Routes>
       </BrowserRouter>
     </div>
