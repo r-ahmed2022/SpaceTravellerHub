@@ -17,10 +17,8 @@ export const LIST_MISSIONS = createAsyncThunk('LIST_MISSIONS', async () => {
     initialState,
     reducers: {
        JOIN_MISSION: (state, action) => {
-           let filtered = state.list.map((mission) => {
-              return (mission.mission_id === action.payload) ? {...mission, reserved: !mission.reserved} : mission
-          });
-          state.list = filtered
+        const filtered = state.list?.map((mission) => ((mission.mission_id === action.payload) ? { ...mission, reserved: !mission.reserved } : mission));
+        state.list = filtered;
        },
 
     },
@@ -30,10 +28,8 @@ export const LIST_MISSIONS = createAsyncThunk('LIST_MISSIONS', async () => {
       });
       builder.addCase(LIST_MISSIONS.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload?.map((mission) => {
-            return {...mission, reserved: false}
-        })
-        return state
+        state.list = action.payload.map((mission) => ({ ...mission, reserved: false }));
+        return state;
       });
       builder.addCase(LIST_MISSIONS.rejected, (state, action) => {
         state.msg = action.payload;

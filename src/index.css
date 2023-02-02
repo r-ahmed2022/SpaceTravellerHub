@@ -95,12 +95,22 @@ body {
   align-items: flex-start;
   text-align: left;
   padding: .5em 1em;
+  position: relative;  
 }
 
 .rocket-info h4 {
    margin: 1em 0;
    color: #fff;
 }
+
+.rocket-info span {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  padding: .5em;
+  text-align: center;
+}
+
 
 button {
   cursor: pointer;
@@ -112,7 +122,15 @@ button {
   padding: .4em .7em;
   margin: 1em;
   align-self: center;
+}
 
+.activebtn {
+  width: 200px;
+  display: block;
+  padding: .4em .7em;
+  margin: 1em;
+  align-self: center;
+  background: #1C94B3;
 }
 
 .mission-list {
@@ -171,15 +189,17 @@ button {
 
 .non-member-badge,
 .member-badge {
-  color: white;
+  color: #1c1c1c;
+  font-weight: 700;
 }
 
 .non-member-badge {
-  background-color: rgb(116, 116, 116);
+  background-color: #fff;
 }
 
 .member-badge {
   background-color: #1c94b3;
+  color: #fff;
 }
 
 .leave-mission-btn,
@@ -189,10 +209,88 @@ button {
 }
 
 .join-mission-btn {
-  border: 1px solid grey;
+  border: 1px solid #00D7C6
 }
 
 .leave-mission-btn {
   border: 1px solid rgb(255, 70, 70);
   color: rgb(255, 70, 70);
+}
+
+.leave-rocket-btn {
+  width: 200px;
+  display: block;
+  padding: .4em .7em;
+  border: 1px solid #ff0000;
+  margin: 1em;
+  align-self: center;
+  color: rgb(255, 70, 70);
+  background: none;
+}
+
+
+.bookings {
+  height: 600px;
+  display: grid;
+  grid-template-areas: "rockets missions";
+  margin: 0 2.5%;
+  gap: 20px;
+}
+
+.bookings div h1 {
+  margin: 0.5em 0;
+  font-size: 17px;
+  color: #fff;
+}
+
+.rocket-bookings {
+  grid-area: rockets;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.bookings-list {
+  list-style: none;
+  border: #fff solid 1px;
+}
+
+.rocket-bookings, .mission-bookings li {
+  list-style: none;
+
+}
+
+.mission-bookings {
+  grid-area: missions;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: #fff solid 1px;
+  padding: 3%;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 500px) {
+  .rocket {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+
+  .rocket-info {
+    align-items: center;
+  }
+
+  .rocket-info p {
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+
+  .rocket-info span {
+    order: -1;
+  }
 }
