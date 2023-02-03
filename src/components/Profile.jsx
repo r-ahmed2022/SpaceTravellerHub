@@ -1,15 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { JOIN_ROCKET } from '../redux/Rocket/rocket'
+import { JOIN_MISSION } from '../redux/Missions/mission'
+import {useDispatch} from 'react-redux'
 
 export default function Profile() {
   const { list } = useSelector((state) => state?.rocketslist);
+  const dispatch = useDispatch();
   const rocketBookings = list?.map((rocket) => {
-    return (!rocket.reserved) ? (<li className="item" key={rocket.id}>{rocket.name}</li>) : null;
+    return (!rocket.reserved) ? (<li className="item" key={rocket.id}>{rocket.name}
+   <button className='leave-mission-btn' onClick={() => dispatch(JOIN_ROCKET(rocket.id))}>Cancel Reservation</button> 
+
+    </li>) : null;
   });
 
   const { list: missionList } = useSelector((state) => state?.missionlist);
   const missionBookings = missionList?.map((mission) => {
-    return (mission.reserved) ? <li className="item" key={mission.mission_id}>{mission.mission_name}</li> : null;
+    return (mission.reserved) ? <li className="item" key={mission.mission_id}>{mission.mission_name}
+       <button className='leave-mission-btn' onClick={() => dispatch(JOIN_MISSION(mission.mission_id))}>Cancel Reservation</button> 
+    </li> : null;
   });
   console.log(rocketBookings)
   return (
