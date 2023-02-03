@@ -217,6 +217,17 @@ button {
   color: rgb(255, 70, 70);
 }
 
+.emptybookings-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  color: #fff;
+  align-self: center;
+}
+
 .leave-rocket-btn {
   width: 200px;
   display: block;
