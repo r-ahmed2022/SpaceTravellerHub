@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { JOIN_ROCKET } from '../redux/Rocket/rocket'
 import { JOIN_MISSION } from '../redux/Missions/mission'
 import {useDispatch} from 'react-redux'
@@ -9,7 +10,8 @@ export default function Profile() {
   const dispatch = useDispatch();
   const rocketBookings = list?.map((rocket) => {
     return (!rocket.reserved) ? (<li className="item" key={rocket.id}>{rocket.name}
-   <button className='leave-mission-btn' onClick={() => dispatch(JOIN_ROCKET(rocket.id))}>Cancel Reservation</button> 
+                                 <NavLink to= {rocket.wikipedia} target="_blank" rel="noopener noreferrer">Read more...</NavLink>
+                    <button className='leave-mission-btn' onClick={() => dispatch(JOIN_ROCKET(rocket.id))}>Cancel Reservation</button> 
 
     </li>) : null;
   });
@@ -17,6 +19,7 @@ export default function Profile() {
   const { list: missionList } = useSelector((state) => state?.missionlist);
   const missionBookings = missionList?.map((mission) => {
     return (mission.reserved) ? <li className="item" key={mission.mission_id}>{mission.mission_name}
+        <NavLink to= {mission.wikipedia} target="_blank" rel="noopener noreferrer">Read more...</NavLink>
        <button className='leave-mission-btn' onClick={() => dispatch(JOIN_MISSION(mission.mission_id))}>Cancel Reservation</button> 
     </li> : null;
   });
