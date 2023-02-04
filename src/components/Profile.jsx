@@ -23,7 +23,6 @@ export default function Profile() {
        <button className='leave-mission-btn' onClick={() => dispatch(JOIN_MISSION(mission.mission_id))}>Cancel Reservation</button> 
     </li> : null;
   });
-  console.log(rocketBookings)
   return (
     <div className="bookings">
        <div className="rocket-bookings">
