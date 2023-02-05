@@ -26,6 +26,7 @@ function App() {
             <Route exact path="/" element={<RocketList />} />
             <Route path="/mission" element={<MissionList />} />
             <Route path="/profile" element={<Profile />} />
+            <Route exact path="*" element={<RocketList />} />
 
             </Routes>
       </BrowserRouter>
