@@ -156,7 +156,7 @@ Feel free to check the [issues page](https://github.com/r-ahmed2022/spacetravell
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project please share and contribute
+If you like this project please give star ⭐️
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
